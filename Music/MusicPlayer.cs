@@ -1,5 +1,4 @@
 ﻿using BoneLib.Notifications;
-using WeatherElectric.TagLibUnity;
 using WeatherElectric.VoidSpeaker.Music.Helpers;
 
 namespace WeatherElectric.VoidSpeaker.Music;
@@ -56,9 +55,9 @@ internal class MusicPlayer : MonoBehaviour
     {
         if (Preferences.UseTagLib.Value)
         {
-            var songName = TagLib.GetTag(musicFile.FilePath, TagLib.Tag.Title);
-            var artistName = TagLib.GetTag(musicFile.FilePath, TagLib.Tag.Artist);
-            Texture2D albumArt = TagLib.GetCover(musicFile.FilePath);
+            var songName = TagLibWrapper.GetTag(musicFile.FilePath, TagLibWrapper.Tag.Title);
+            var artistName = TagLibWrapper.GetTag(musicFile.FilePath, TagLibWrapper.Tag.Artist);
+            Texture2D albumArt = TagLibWrapper.GetCover(musicFile.FilePath);
             
             Notification notif = new Notification()
             {

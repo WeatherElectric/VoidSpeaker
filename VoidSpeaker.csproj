@@ -55,6 +55,9 @@
         <Reference Include="SLZ.Marrow.SDK">
             <HintPath>Links\MelonLoader\Managed\SLZ.Marrow.SDK.dll</HintPath>
         </Reference>
+        <Reference Include="TagLibSharp">
+          <HintPath>Staging\UserLibs\TagLibSharp.dll</HintPath>
+        </Reference>
         <Reference Include="UnhollowerBaseLib">
             <HintPath>Links\MelonLoader\Managed\UnhollowerBaseLib.dll</HintPath>
         </Reference>
@@ -64,8 +67,8 @@
         <Reference Include="UnityEngine.AudioModule">
             <HintPath>Links\MelonLoader\Managed\UnityEngine.AudioModule.dll</HintPath>
         </Reference>
-        <Reference Include="TagLibUnity">
-          <HintPath>Links\Mods\TagLibUnity.dll</HintPath>
+        <Reference Include="UnityEngine.ImageConversionModule">
+            <HintPath>Links\MelonLoader\Managed\UnityEngine.ImageConversionModule.dll</HintPath>
         </Reference>
     </ItemGroup>
     <ItemGroup>
@@ -74,6 +77,7 @@
         <Compile Include="GlobalUsings.cs"/>
         <Compile Include="Music\Files\MusicFile.cs" />
         <Compile Include="Music\Helpers\HelperMethods.cs" />
+        <Compile Include="Music\Helpers\TagLibWrapper.cs" />
         <Compile Include="Music\MusicList.cs" />
         <Compile Include="Music\MusicLoader.cs" />
         <Compile Include="Main.cs"/>
@@ -90,6 +94,6 @@
     <PropertyGroup>
         <PostBuildEvent>COPY "$(TargetPath)" "$(SolutionDir)\Links\Mods"
             COPY "$(TargetPath)" "$(SolutionDir)Staging\Mods"
-        </PostBuildEvent>
+COPY "$(SolutionDir)README.md" "$(SolutionDir)Staging"</PostBuildEvent>
     </PropertyGroup>
 </Project>
