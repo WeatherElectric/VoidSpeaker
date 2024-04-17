@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using Object = UnityEngine.Object;
 
 namespace WeatherElectric.VoidSpeaker.Music.Helpers;
 
@@ -22,7 +23,7 @@ internal static class TagLibWrapper
     
     public static string GetTag(string filepath, Tag tag)
     {
-        var tagLibFile = global::TagLib.File.Create(filepath);
+        var tagLibFile = TagLib.File.Create(filepath);
         _tag = tag switch
         {
             Tag.Title => tagLibFile.Tag.Title,

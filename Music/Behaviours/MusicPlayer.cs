@@ -1,4 +1,5 @@
 ﻿using BoneLib.Notifications;
+using UnityEngine.Experimental.Rendering;
 
 namespace WeatherElectric.VoidSpeaker.Music.Behaviours;
 
@@ -50,19 +51,36 @@ internal class MusicPlayer : MonoBehaviour
         if (Preferences.SendNotifications.Value) SendNotification(musicFile);
     }
 
-    private static void SendNotification(MusicFile musicFile)
+    private void SendNotification(MusicFile musicFile)
     {
         if (Preferences.UseTagLib.Value)
         {
-            var songName = TagLibWrapper.GetTag(musicFile.FilePath, TagLibWrapper.Tag.Title);
-            var artistName = TagLibWrapper.GetTag(musicFile.FilePath, TagLibWrapper.Tag.Artist);
-            Texture2D albumArt = TagLibWrapper.GetCover(musicFile.FilePath);
+            bool isTitleCached = musicFile.CachedTitle != null;
+            bool isArtistCached = musicFile.CachedTitle != null;
+            bool isAlbumArtCached = musicFile.CachedArt != null;
+            
+            if (!isTitleCached)
+            {
+                musicFile.CachedTitle = TagLibWrapper.GetTag(musicFile.FilePath, TagLibWrapper.Tag.Title);
+            }
+            if (!isArtistCached)
+            {
+                musicFile.CachedArtist = TagLibWrapper.GetTag(musicFile.FilePath, TagLibWrapper.Tag.Artist);
+            }
+            if (!isAlbumArtCached)
+            {
+                Texture2D albumArt = TagLibWrapper.GetCover(musicFile.FilePath);
+                if (albumArt == null) return;
+                Texture2D resizedAlbumArt = albumArt.ProperResize(336, 336);
+                musicFile.CachedArt = resizedAlbumArt;
+                DestroyTexture(albumArt);
+            }
             
             Notification notif = new Notification
             {
                 Title = "Now Playing:",
-                Message = $"{songName} by {artistName}",
-                CustomIcon = albumArt,
+                Message = $"{musicFile.CachedTitle} by {musicFile.CachedArtist}",
+                CustomIcon = musicFile.CachedArt,
                 Type = NotificationType.CustomIcon,
                 PopupLength = Preferences.NotificationDuration.Value,
                 ShowTitleOnPopup = true
@@ -81,6 +99,11 @@ internal class MusicPlayer : MonoBehaviour
             };
             notif.Send();
         }
+    }
+
+    private void DestroyTexture(Texture2D texture2D)
+    {
+        Destroy(texture2D);
     }
 
     public void Resume()
@@ -111,21 +134,22 @@ internal class MusicPlayer : MonoBehaviour
 
     public void Skip()
     {
-        if (!_playingAtAll) return;
+        if (_playingAtAll == false) return;
         _currentMusicIndex++;
         if (_currentMusicIndex >= MusicList.Music.Count)
         {
             _currentMusicIndex = 0;
         }
+        Stop(false);
         Play();
     }
 
-    public void Stop()
+    public void Stop(bool resetIndex = true)
     {
         if (!_playingAtAll) return;
         _playingAtAll = false;
         _audioSource.Stop();
-        _currentMusicIndex = 0;
+        if (resetIndex) _currentMusicIndex = 0;
     }
 
     private void OnDestroy()

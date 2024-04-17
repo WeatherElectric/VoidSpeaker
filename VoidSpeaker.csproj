@@ -56,7 +56,7 @@
             <HintPath>Links\MelonLoader\Managed\SLZ.Marrow.SDK.dll</HintPath>
         </Reference>
         <Reference Include="TagLibSharp">
-          <HintPath>Staging\UserLibs\TagLibSharp.dll</HintPath>
+          <HintPath>Links\Game\UserLibs\TagLibSharp.dll</HintPath>
         </Reference>
         <Reference Include="UnhollowerBaseLib">
             <HintPath>Links\MelonLoader\Managed\UnhollowerBaseLib.dll</HintPath>

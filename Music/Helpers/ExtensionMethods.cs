@@ -31,4 +31,20 @@ internal static class ExtensionMethods
     {
         Notifier.Send(notif);
     }
+    
+    public static int RoundToInt(this float f)
+    {
+        return Mathf.CeilToInt(f);
+    }
+
+    public static Texture2D ProperResize(this Texture2D texture2D, int width, int height)
+    {
+        RenderTexture rt = new RenderTexture(width, height, 24);
+        RenderTexture.active = rt;
+        Graphics.Blit(texture2D, rt);
+        Texture2D newTexture = new Texture2D(width, height);
+        newTexture.ReadPixels(new Rect(0, 0, width, height), 0, 0);
+        newTexture.Apply();
+        return newTexture;
+    }
 }

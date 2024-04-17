@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using Object = UnityEngine.Object;
 
 namespace WeatherElectric.VoidSpeaker.Music;
 
