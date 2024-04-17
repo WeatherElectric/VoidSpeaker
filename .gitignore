@@ -1,0 +1,12 @@
+bin/
+obj/
+/packages/
+riderModule.iml
+/_ReSharper.Caches/
+
+Links/
+.idea/
+*.zip
+Staging/Mods/VoidSpeaker.dll
+
+VoidSpeaker.sln.DotSettings.user

@@ -1,0 +1,11 @@
+global using System;
+global using System.Reflection;
+global using BoneLib;
+global using MelonLoader;
+global using WeatherElectric.VoidSpeaker.Melon;
+global using BoneLib.BoneMenu;
+global using BoneLib.BoneMenu.Elements;
+global using UnityEngine;
+global using WeatherElectric.VoidSpeaker.Menu;
+global using Object = UnityEngine.Object;
+global using WeatherElectric.VoidSpeaker.Music.Files;
