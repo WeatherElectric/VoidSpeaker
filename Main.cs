@@ -35,5 +35,8 @@ public class Main : MelonMod
         _hasRanSetup = true;
         var gameObj = new GameObject("MusicPlayer");
         gameObj.AddComponent<MusicPlayer>();
+        
+        // if i do this earlier, it does nothing, prob since unityengine hasnt loaded anything yet lol
+        if (Preferences.UseTagLib.Value) MusicList.CacheValues();
     }
 }

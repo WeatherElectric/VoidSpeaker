@@ -1,5 +1,4 @@
 ﻿using BoneLib.Notifications;
-using UnityEngine.Experimental.Rendering;
 
 namespace WeatherElectric.VoidSpeaker.Music.Behaviours;
 
@@ -61,19 +60,19 @@ internal class MusicPlayer : MonoBehaviour
             
             if (!isTitleCached)
             {
-                musicFile.CachedTitle = TagLibWrapper.GetTag(musicFile.FilePath, TagLibWrapper.Tag.Title);
+                musicFile.CachedTitle = TagLibWrapper.GetTag(musicFile.Path, TagLibWrapper.Tag.Title);
             }
             if (!isArtistCached)
             {
-                musicFile.CachedArtist = TagLibWrapper.GetTag(musicFile.FilePath, TagLibWrapper.Tag.Artist);
+                musicFile.CachedArtist = TagLibWrapper.GetTag(musicFile.Path, TagLibWrapper.Tag.Artist);
             }
             if (!isAlbumArtCached)
             {
-                Texture2D albumArt = TagLibWrapper.GetCover(musicFile.FilePath);
+                Texture2D albumArt = TagLibWrapper.GetCover(musicFile.Path);
                 if (albumArt == null) return;
                 Texture2D resizedAlbumArt = albumArt.ProperResize(336, 336);
                 musicFile.CachedArt = resizedAlbumArt;
-                DestroyTexture(albumArt);
+                Destroy(albumArt);
             }
             
             Notification notif = new Notification
@@ -92,18 +91,13 @@ internal class MusicPlayer : MonoBehaviour
             Notification notif = new Notification
             {
                 Title = "Now Playing:",
-                Message = $"{musicFile.FileName}",
+                Message = $"{musicFile.Name}",
                 Type = NotificationType.Information,
                 PopupLength = Preferences.NotificationDuration.Value,
                 ShowTitleOnPopup = true
             };
             notif.Send();
         }
-    }
-
-    private void DestroyTexture(Texture2D texture2D)
-    {
-        Destroy(texture2D);
     }
 
     public void Resume()

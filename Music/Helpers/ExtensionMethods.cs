@@ -45,6 +45,7 @@ internal static class ExtensionMethods
         Texture2D newTexture = new Texture2D(width, height);
         newTexture.ReadPixels(new Rect(0, 0, width, height), 0, 0);
         newTexture.Apply();
+        Object.Destroy(rt);
         return newTexture;
     }
 }

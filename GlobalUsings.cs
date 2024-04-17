@@ -10,3 +10,4 @@ global using WeatherElectric.VoidSpeaker.Music;
 global using WeatherElectric.VoidSpeaker.Music.Behaviours;
 global using WeatherElectric.VoidSpeaker.Music.Files;
 global using WeatherElectric.VoidSpeaker.Music.Helpers;
+global using Object = UnityEngine.Object;

@@ -2,17 +2,18 @@
 
 internal class MusicFile
 {
-    public readonly string FilePath;
-    public readonly string FileName;
+    public readonly string Path;
+    public readonly string Name;
     public readonly AudioClip AudioClip;
+    
     public Texture2D CachedArt;
     public string CachedTitle;
     public string CachedArtist;
     
-    public MusicFile(string filePath, string fileName, AudioClip audioClip)
+    public MusicFile(string path, string name, AudioClip audioClip)
     {
-        FilePath = filePath;
-        FileName = fileName;
+        Path = path;
+        Name = name;
         AudioClip = audioClip;
     }
 }
