@@ -1,6 +1,4 @@
-﻿using WeatherElectric.VoidSpeaker.Music;
-
-namespace WeatherElectric.VoidSpeaker;
+﻿namespace WeatherElectric.VoidSpeaker;
 
 public class Main : MelonMod
 {

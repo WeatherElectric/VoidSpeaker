@@ -113,9 +113,13 @@ internal class MusicPlayer : MonoBehaviour
 
     public void Skip()
     {
-        // while this looks like it does what pause does: it actually skips with the way my code works
-        // because Update() isnt gonna know that it was paused since im not setting the _paused var here, and it'll see that the source isnt playing anymore and play the next song
-        _audioSource.Pause();
+        if (!_playingAtAll) return;
+        _currentMusicIndex++;
+        if (_currentMusicIndex >= MusicList.Music.Count)
+        {
+            _currentMusicIndex = 0;
+        }
+        Play();
     }
 
     public void Stop()

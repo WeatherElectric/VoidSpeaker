@@ -7,5 +7,6 @@ global using BoneLib.BoneMenu;
 global using BoneLib.BoneMenu.Elements;
 global using UnityEngine;
 global using WeatherElectric.VoidSpeaker.Menu;
+global using WeatherElectric.VoidSpeaker.Music;
 global using Object = UnityEngine.Object;
 global using WeatherElectric.VoidSpeaker.Music.Files;

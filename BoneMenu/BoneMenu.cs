@@ -1,6 +1,4 @@
-﻿using WeatherElectric.VoidSpeaker.Music;
-
-namespace WeatherElectric.VoidSpeaker.Menu;
+﻿namespace WeatherElectric.VoidSpeaker.Menu;
 
 internal static class BoneMenu
 {
@@ -37,7 +35,7 @@ internal static class BoneMenu
         
         subCat.CreateFunctionElement("Stop", Color.red, () =>
         {
-            
+            MusicPlayer.Instance.Stop();
         });
         
         #region Settings
