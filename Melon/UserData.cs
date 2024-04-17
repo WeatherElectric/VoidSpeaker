@@ -18,5 +18,11 @@ internal static class UserData
         {
             Directory.CreateDirectory(ModPath);
         }
+        
+        if (Directory.GetFiles(ModPath).Length == 0)
+        {
+            var bytes = HelperMethods.GetResourceBytes(Assembly.GetExecutingAssembly(), "WeatherElectric.VoidSpeaker.Resources.Default.mp3");
+            File.WriteAllBytes(Path.Combine(ModPath, "Don't Fence Me In.mp3"), bytes);
+        }
     }
 }

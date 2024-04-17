@@ -83,6 +83,9 @@
         <Compile Include="Music\MusicPlayer.cs" />
         <Compile Include="Properties\AssemblyInfo.cs"/>
     </ItemGroup>
+    <ItemGroup>
+      <EmbeddedResource Include="Resources\Default.mp3" />
+    </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets"/>
     <PropertyGroup>
         <PostBuildEvent>COPY "$(TargetPath)" "$(SolutionDir)\Links\Mods"
