@@ -1,7 +1,6 @@
 ﻿using BoneLib.Notifications;
-using WeatherElectric.VoidSpeaker.Music.Helpers;
 
-namespace WeatherElectric.VoidSpeaker.Music;
+namespace WeatherElectric.VoidSpeaker.Music.Behaviours;
 
 [RegisterTypeInIl2Cpp]
 internal class MusicPlayer : MonoBehaviour
@@ -59,7 +58,7 @@ internal class MusicPlayer : MonoBehaviour
             var artistName = TagLibWrapper.GetTag(musicFile.FilePath, TagLibWrapper.Tag.Artist);
             Texture2D albumArt = TagLibWrapper.GetCover(musicFile.FilePath);
             
-            Notification notif = new Notification()
+            Notification notif = new Notification
             {
                 Title = "Now Playing:",
                 Message = $"{songName} by {artistName}",
@@ -68,11 +67,11 @@ internal class MusicPlayer : MonoBehaviour
                 PopupLength = Preferences.NotificationDuration.Value,
                 ShowTitleOnPopup = true
             };
-            Notifier.Send(notif);
+            notif.Send();
         }
         else
         {
-            Notification notif = new Notification()
+            Notification notif = new Notification
             {
                 Title = "Now Playing:",
                 Message = $"{musicFile.FileName}",
@@ -80,7 +79,7 @@ internal class MusicPlayer : MonoBehaviour
                 PopupLength = Preferences.NotificationDuration.Value,
                 ShowTitleOnPopup = true
             };
-            Notifier.Send(notif);
+            notif.Send();
         }
     }
 

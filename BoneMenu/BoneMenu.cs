@@ -1,16 +1,24 @@
-﻿namespace WeatherElectric.VoidSpeaker.Menu;
+﻿using BoneLib.BoneMenu;
+using BoneLib.BoneMenu.Elements;
+
+namespace WeatherElectric.VoidSpeaker.Menu;
 
 internal static class BoneMenu
 {
     public static void Setup()
     {
         MenuCategory mainCat = MenuManager.CreateCategory("Weather Electric", "#6FBDFF");
-        MenuCategory subCat = mainCat.CreateCategory("Void Speaker", Color.green);
-        SubPanelElement settingsPanel = subCat.CreateSubPanel("Settings", Color.grey);
+        MenuCategory subCat = mainCat.CreateCategory("Void Speaker", "#7196AD");
+        SubPanelElement settingsPanel = subCat.CreateSubPanel("Settings", Color.gray);
         
         subCat.CreateFunctionElement("Play", Color.green, () =>
         {
             MusicPlayer.Instance.Play();
+        });
+        
+        subCat.CreateFunctionElement("Stop", Color.red, () =>
+        {
+            MusicPlayer.Instance.Stop();
         });
         
         subCat.CreateFunctionElement("Pause", Color.yellow, () =>
@@ -31,11 +39,6 @@ internal static class BoneMenu
         subCat.CreateFunctionElement("Shuffle", Color.white, () =>
         {
             MusicPlayer.Instance.Shuffle();
-        });
-        
-        subCat.CreateFunctionElement("Stop", Color.red, () =>
-        {
-            MusicPlayer.Instance.Stop();
         });
         
         #region Settings

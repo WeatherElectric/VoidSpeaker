@@ -1,4 +1,6 @@
-﻿namespace WeatherElectric.VoidSpeaker.Menu;
+﻿using BoneLib.BoneMenu.Elements;
+
+namespace WeatherElectric.VoidSpeaker.Menu;
 
 internal static class BoneMenuExtensions
 {

@@ -75,8 +75,9 @@
         <Compile Include="BoneMenu\BoneMenu.cs"/>
         <Compile Include="BoneMenu\BoneMenuExtensions.cs"/>
         <Compile Include="GlobalUsings.cs"/>
+        <Compile Include="Music\Behaviours\MusicPlayer.cs" />
         <Compile Include="Music\Files\MusicFile.cs" />
-        <Compile Include="Music\Helpers\HelperMethods.cs" />
+        <Compile Include="Music\Helpers\ExtensionMethods.cs" />
         <Compile Include="Music\Helpers\TagLibWrapper.cs" />
         <Compile Include="Music\MusicList.cs" />
         <Compile Include="Music\MusicLoader.cs" />
@@ -84,7 +85,6 @@
         <Compile Include="Melon\ModConsole.cs"/>
         <Compile Include="Melon\Preferences.cs"/>
         <Compile Include="Melon\UserData.cs"/>
-        <Compile Include="Music\MusicPlayer.cs" />
         <Compile Include="Properties\AssemblyInfo.cs"/>
     </ItemGroup>
     <ItemGroup>

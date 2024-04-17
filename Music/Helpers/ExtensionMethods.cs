@@ -1,9 +1,10 @@
 ﻿using System.Collections.Generic;
+using BoneLib.Notifications;
 using Random = System.Random;
 
 namespace WeatherElectric.VoidSpeaker.Music.Helpers;
 
-internal static class HelperMethods
+internal static class ExtensionMethods
 {
     public static void Shuffle<T>(this List<T> list)
     {
@@ -24,5 +25,10 @@ internal static class HelperMethods
         audioSource.playOnAwake = false;
         audioSource.loop = false;
         audioSource.outputAudioMixerGroup = Audio.MusicMixer;
+    }
+
+    public static void Send(this Notification notif)
+    {
+        Notifier.Send(notif);
     }
 }
