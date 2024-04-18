@@ -31,6 +31,10 @@ public class Main : MelonMod
 
     private static void OnLevelLoad(LevelInfo levelInfo)
     {
+        if (_hasRanSetup)
+        {
+            MusicPlayer.Instance.FixMixer();
+        }
         if (_hasRanSetup) return;
         _hasRanSetup = true;
         var gameObj = new GameObject("MusicPlayer");

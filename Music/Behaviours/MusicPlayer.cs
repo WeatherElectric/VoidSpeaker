@@ -100,6 +100,11 @@ internal class MusicPlayer : MonoBehaviour
         }
     }
 
+    public void FixMixer()
+    {
+        _audioSource.outputAudioMixerGroup = Audio.MusicMixer;
+    }
+
     public bool PauseUnpause()
     {
         if (_playingAtAll == false) return false;
