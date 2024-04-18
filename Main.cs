@@ -31,13 +31,6 @@ public class Main : MelonMod
 
     private static void OnLevelLoad(LevelInfo levelInfo)
     {
-        if (_hasRanSetup)
-        {
-            MusicLoader.RemoveMissingFiles();
-            MusicLoader.LoadNewFiles();
-            return;
-        }
-        
         if (_hasRanSetup) return;
         _hasRanSetup = true;
         var gameObj = new GameObject("MusicPlayer");
