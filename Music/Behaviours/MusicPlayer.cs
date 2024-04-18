@@ -74,6 +74,20 @@ internal class MusicPlayer : MonoBehaviour
                 musicFile.CachedArt = resizedAlbumArt;
                 Destroy(albumArt);
             }
+
+            if (musicFile.CachedTitle == null || musicFile.CachedArtist == null || musicFile.CachedArt == null)
+            {
+                Notification notification = new Notification
+                {
+                    Title = "Now Playing:",
+                    Message = $"{musicFile.Name}",
+                    Type = NotificationType.Information,
+                    PopupLength = Preferences.NotificationDuration.Value,
+                    ShowTitleOnPopup = true
+                };
+                notification.Send();
+                return;
+            }
             
             Notification notif = new Notification
             {
