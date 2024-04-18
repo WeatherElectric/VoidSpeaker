@@ -31,15 +31,14 @@ public class Main : MelonMod
 
     private static void OnLevelLoad(LevelInfo levelInfo)
     {
-        // ReSharper disable once ConvertIfStatementToSwitchStatement
         if (_hasRanSetup)
         {
             MusicLoader.RemoveMissingFiles();
             MusicLoader.LoadNewFiles();
             return;
         }
-
-        if (!_hasRanSetup) return;
+        
+        if (_hasRanSetup) return;
         _hasRanSetup = true;
         var gameObj = new GameObject("MusicPlayer");
         gameObj.AddComponent<MusicPlayer>();
