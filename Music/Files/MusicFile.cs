@@ -16,4 +16,23 @@ internal class MusicFile
         Name = name;
         AudioClip = audioClip;
     }
+
+    public void CacheValues()
+    {
+        CachedTitle = TagLibWrapper.GetTag(Path, TagLibWrapper.Tag.Title);
+        CachedArtist = TagLibWrapper.GetTag(Path, TagLibWrapper.Tag.Artist);
+        Texture2D albumArt = TagLibWrapper.GetCover(Path);
+        if (albumArt == null) return;
+        Texture2D resizedAlbumArt = albumArt.ProperResize(336, 336);
+        CachedArt = resizedAlbumArt;
+        Object.Destroy(albumArt);
+    }
+
+    public void Dispose()
+    {
+        Object.Destroy(AudioClip);
+        Object.Destroy(CachedArt);
+        CachedArt = null;
+        CachedTitle = null;
+    }
 }

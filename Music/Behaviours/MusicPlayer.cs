@@ -50,7 +50,7 @@ internal class MusicPlayer : MonoBehaviour
         if (Preferences.SendNotifications.Value) SendNotification(musicFile);
     }
 
-    private void SendNotification(MusicFile musicFile)
+    private static void SendNotification(MusicFile musicFile)
     {
         if (Preferences.UseTagLib.Value)
         {
@@ -100,16 +100,33 @@ internal class MusicPlayer : MonoBehaviour
         }
     }
 
-    public void Resume()
+    public bool PauseUnpause()
     {
-        _paused = false;
-        _audioSource.UnPause();
+        if (_playingAtAll == false) return false;
+        _paused = !_paused;
+        if (_paused)
+        {
+            _audioSource.Pause();
+        }
+        else
+        {
+            _audioSource.UnPause();
+        }
+        return _paused;
     }
-
+    
     public void Pause()
     {
+        if (_playingAtAll == false) return;
         _paused = true;
         _audioSource.Pause();
+    }
+    
+    public void Unpause()
+    {
+        if (_playingAtAll == false) return;
+        _paused = false;
+        _audioSource.UnPause();
     }
 
     public void Shuffle()

@@ -5,6 +5,7 @@ namespace WeatherElectric.VoidSpeaker.Menu;
 
 internal static class BoneMenu
 {
+    private static FunctionElement _pauseElement;
     public static void Setup()
     {
         MenuCategory mainCat = MenuManager.CreateCategory("Weather Electric", "#6FBDFF");
@@ -19,16 +20,16 @@ internal static class BoneMenu
         subCat.CreateFunctionElement("Stop", Color.red, () =>
         {
             MusicPlayer.Instance.Stop();
+            _pauseElement.SetName("Pause");
+            _pauseElement.SetColor(Color.yellow);
+            MusicPlayer.Instance.Unpause();
         });
         
-        subCat.CreateFunctionElement("Pause", Color.yellow, () =>
+        _pauseElement = subCat.CreateFunctionElement("Pause", Color.yellow, () =>
         {
-            MusicPlayer.Instance.Pause();
-        });
-        
-        subCat.CreateFunctionElement("Resume", Color.green, () =>
-        {
-            MusicPlayer.Instance.Resume();
+            var paused = MusicPlayer.Instance.PauseUnpause();
+            _pauseElement.SetName(paused ? "Unpause" : "Pause");
+            _pauseElement.SetColor(paused ? Color.green : Color.yellow);
         });
         
         subCat.CreateFunctionElement("Skip", Color.white, () =>
@@ -46,7 +47,12 @@ internal static class BoneMenu
         settingsPanel.CreateBoolPreference("Send Notifications", Color.white, Preferences.SendNotifications, Preferences.OwnCategory);
         settingsPanel.CreateBoolPreference("Use TagLib", Color.white, Preferences.UseTagLib, Preferences.OwnCategory);
         settingsPanel.CreateFloatPreference("Notification Duration", Color.white, 0.5f, 0.5f, 10f, Preferences.NotificationDuration, Preferences.OwnCategory);
-        
+        settingsPanel.CreateFunctionElement("Refresh Music", Color.white, () =>
+        {
+            MusicLoader.RemoveMissingFiles();
+            MusicLoader.LoadNewFiles();
+        });
+
         #endregion
     }
 }
