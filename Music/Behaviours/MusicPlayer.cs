@@ -60,11 +60,15 @@ internal class MusicPlayer : MonoBehaviour
             
             if (!isTitleCached)
             {
-                musicFile.CachedTitle = TagLibWrapper.GetTag(musicFile.Path, TagLibWrapper.Tag.Title);
+                var title = TagLibWrapper.GetTag(musicFile.Path, TagLibWrapper.Tag.Title);
+                if (title == null) return;
+                musicFile.CachedTitle = title;
             }
             if (!isArtistCached)
             {
-                musicFile.CachedArtist = TagLibWrapper.GetTag(musicFile.Path, TagLibWrapper.Tag.Artist);
+                var artist = TagLibWrapper.GetTag(musicFile.Path, TagLibWrapper.Tag.Artist);
+                if (artist == null) return;
+                musicFile.CachedArtist = artist;
             }
             if (!isAlbumArtCached)
             {
