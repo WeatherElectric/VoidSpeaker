@@ -9,7 +9,7 @@ internal static class BoneMenu
     public static void Setup()
     {
         MenuCategory mainCat = MenuManager.CreateCategory("Weather Electric", "#6FBDFF");
-        MenuCategory subCat = mainCat.CreateCategory("Void Speaker", "#7196AD");
+        MenuCategory subCat = mainCat.CreateCategory("Void Speaker", "#bdd9da");
         SubPanelElement settingsPanel = subCat.CreateSubPanel("Settings", Color.gray);
         
         subCat.CreateFunctionElement("Play", Color.green, () =>
