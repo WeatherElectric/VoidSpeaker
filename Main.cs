@@ -8,7 +8,7 @@ public class Main : MelonMod
     internal const string Description = "A music player for BONELAB";
     internal const string Author = "SoulWithMae";
     internal const string Company = "Weather Electric";
-    internal const string Version = "1.0.1";
+    internal const string Version = "1.0.2";
     internal const string DownloadLink = "https://thunderstore.io/c/bonelab/p/SoulWithMae/VoidSpeaker/";
 
     private static bool _hasRanSetup;
@@ -31,10 +31,6 @@ public class Main : MelonMod
 
     private static void OnLevelLoad(LevelInfo levelInfo)
     {
-        if (_hasRanSetup)
-        {
-            MusicPlayer.Instance.FixMixer();
-        }
         if (_hasRanSetup) return;
         _hasRanSetup = true;
         var gameObj = new GameObject("MusicPlayer");

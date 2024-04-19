@@ -11,6 +11,11 @@ internal static class BoneMenu
         MenuCategory mainCat = MenuManager.CreateCategory("Weather Electric", "#6FBDFF");
         MenuCategory subCat = mainCat.CreateCategory("Void Speaker", "#bdd9da");
         SubPanelElement settingsPanel = subCat.CreateSubPanel("Settings", Color.gray);
+
+        subCat.CreateFloatElement("Volume", Color.white, 1f, 0.1f, 0f, 1f, f =>
+        {
+            MusicPlayer.Instance.SetVolume(f);
+        });
         
         subCat.CreateFunctionElement("Play", Color.green, () =>
         {

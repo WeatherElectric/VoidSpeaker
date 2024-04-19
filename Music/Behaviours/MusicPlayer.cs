@@ -28,15 +28,18 @@ internal class MusicPlayer : MonoBehaviour
     {
         if (_paused) return;
         if (!_playingAtAll) return;
-        if (!_audioSource.isPlaying)
+        if (_audioSource.isPlaying) return;
+        _currentMusicIndex++;
+        if (_currentMusicIndex >= MusicList.Music.Count)
         {
-            _currentMusicIndex++;
-            if (_currentMusicIndex >= MusicList.Music.Count)
-            {
-                _currentMusicIndex = 0;
-            }
-            Play();
+            _currentMusicIndex = 0;
         }
+        Play();
+    }
+
+    public void SetVolume(float volume)
+    {
+        _audioSource.volume = volume;
     }
 
     public void Play()

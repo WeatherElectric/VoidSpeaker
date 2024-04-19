@@ -92,8 +92,8 @@
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets"/>
     <PropertyGroup>
-        <PostBuildEvent>COPY "$(TargetPath)" "$(SolutionDir)\Links\Mods"
-            COPY "$(TargetPath)" "$(SolutionDir)Staging\Mods"
+        <PostBuildEvent>COPY "$(TargetPath)" "$(SolutionDir)Links\Mods"
+COPY "$(TargetPath)" "$(SolutionDir)Staging\Mods"
 COPY "$(SolutionDir)README.md" "$(SolutionDir)Staging"</PostBuildEvent>
     </PropertyGroup>
 </Project>

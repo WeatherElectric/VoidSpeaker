@@ -24,7 +24,7 @@ internal static class ExtensionMethods
         audioSource.spatialBlend = 0;
         audioSource.playOnAwake = false;
         audioSource.loop = false;
-        audioSource.outputAudioMixerGroup = Audio.MusicMixer;
+        // audioSource.outputAudioMixerGroup = Audio.MusicMixer;
     }
 
     public static void Send(this Notification notif)
