@@ -24,6 +24,7 @@ internal static class ExtensionMethods
         audioSource.spatialBlend = 0;
         audioSource.playOnAwake = false;
         audioSource.loop = false;
+        audioSource.volume = Preferences.Volume.Value;
         // audioSource.outputAudioMixerGroup = Audio.MusicMixer;
     }
 
