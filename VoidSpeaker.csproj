@@ -69,39 +69,26 @@
     </ItemGroup>
     
     <ItemGroup>
-        <Compile Include="BoneMenu\BoneMenu.cs"/>
-        <Compile Include="BoneMenu\BoneMenuExtensions.cs"/>
-        <Compile Include="GlobalUsings.cs"/>
-        <Compile Include="Music\Behaviours\MusicPlayer.cs" />
-        <Compile Include="Music\Files\MusicFile.cs" />
-        <Compile Include="Music\Helpers\ExtensionMethods.cs" />
-        <Compile Include="Music\Helpers\TagLibWrapper.cs" />
-        <Compile Include="Music\MusicList.cs" />
-        <Compile Include="Music\MusicLoader.cs" />
-        <Compile Include="Main.cs"/>
-        <Compile Include="Melon\ModConsole.cs"/>
-        <Compile Include="Melon\Preferences.cs"/>
-        <Compile Include="Melon\UserData.cs"/>
-        <Compile Include="Properties\AssemblyInfo.cs"/>
-        <Compile Remove="Links\**" />
-        <Compile Remove="Staging\**" />
+      <Compile Remove="Staging\**" />
+      <Compile Remove="Links\**" />
     </ItemGroup>
+    
     <ItemGroup>
-      <EmbeddedResource Include="Resources\Default.mp3" />
-      <EmbeddedResource Remove="Links\**" />
       <EmbeddedResource Remove="Staging\**" />
+      <EmbeddedResource Remove="Links\**" />
+      <None Remove="Resources\Default.mp3" />
+      <EmbeddedResource Include="Resources\Default.mp3" />
     </ItemGroup>
+    
     <ItemGroup>
+      <None Remove="Staging\**" />
       <None Remove=".gitignore" />
+      <None Remove="Links\**" />
       <None Remove="README.md" />
       <None Remove="setup.bat" />
-      <None Remove="Links\**" />
-      <None Remove="Staging\**" />
     </ItemGroup>
-
-    <PropertyGroup>
-        <PostBuildEvent>COPY "$(TargetPath)" "$(SolutionDir)Links\Mods"
-COPY "$(TargetPath)" "$(SolutionDir)Staging\Mods"
-COPY "$(SolutionDir)README.md" "$(SolutionDir)Staging"</PostBuildEvent>
-    </PropertyGroup>
+    
+    <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+      <Exec Command="COPY &quot;$(TargetPath)&quot; &quot;$(SolutionDir)Links\Mods&quot;" />
+    </Target>
 </Project>
