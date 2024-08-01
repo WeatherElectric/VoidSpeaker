@@ -12,7 +12,7 @@
     MelonInfo(typeof(WeatherElectric.VoidSpeaker.Main), WeatherElectric.VoidSpeaker.Main.Name,
         WeatherElectric.VoidSpeaker.Main.Version,
         WeatherElectric.VoidSpeaker.Main.Author, WeatherElectric.VoidSpeaker.Main.DownloadLink)]
-[assembly: MelonColor(ConsoleColor.DarkCyan)]
+[assembly: MelonColor(255, 0, 139, 139)]
 
 // Create and Setup a MelonGame Attribute to mark a Melon as Universal or Compatible with specific Games.
 // If no MelonGame Attribute is found or any of the Values for any MelonGame Attribute on the Melon is null or empty it will be assumed the Melon is Universal.

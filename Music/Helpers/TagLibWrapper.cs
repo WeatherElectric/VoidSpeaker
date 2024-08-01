@@ -57,6 +57,7 @@ internal static class TagLibWrapper
         var texture = new Texture2D(2, 2);
         // ReSharper disable once InvokeAsExtensionMethod, unhollowed unity extensions don't work well, have to call them directly
         ImageConversion.LoadImage(texture, picture.Data.Data, false);
+        // im supposed to call texture.Apply();, right? well guess what! ITS FUCKED UP IN IL2CPP! FUCK YOU IL2CPP!
         return texture;
     }
     

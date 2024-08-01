@@ -1,5 +1,4 @@
 ﻿using BoneLib.BoneMenu;
-using BoneLib.BoneMenu.Elements;
 
 namespace WeatherElectric.VoidSpeaker.Menu;
 
@@ -8,43 +7,43 @@ internal static class BoneMenu
     private static FunctionElement _pauseElement;
     public static void Setup()
     {
-        MenuCategory mainCat = MenuManager.CreateCategory("Weather Electric", "#6FBDFF");
-        MenuCategory subCat = mainCat.CreateCategory("Void Speaker", "#bdd9da");
-        SubPanelElement settingsPanel = subCat.CreateSubPanel("Settings", Color.gray);
+        Page mainCat = Page.Root.CreatePage("<color=#6FBDFF>Weather Electric</color>", Color.cyan);
+        Page subCat = mainCat.CreatePage("<color=#bdd9da>Void Speaker</color>", Color.cyan);
+        Page settingsPanel = subCat.CreatePage("Settings", Color.gray);
 
-        subCat.CreateFloatElement("Volume", Color.white, Preferences.Volume.Value, 0.05f, 0f, 1f, f =>
+        subCat.CreateFloat("Volume", Color.white, Preferences.Volume.Value, 0.05f, 0f, 1f, f =>
         {
             MusicPlayer.Instance.SetVolume(f);
             Preferences.Volume.Value = f;
             Preferences.OwnCategory.SaveToFile(false);
         });
         
-        subCat.CreateFunctionElement("Play", Color.green, () =>
+        subCat.CreateFunction("Play", Color.green, () =>
         {
             MusicPlayer.Instance.Play();
         });
         
-        subCat.CreateFunctionElement("Stop", Color.red, () =>
+        subCat.CreateFunction("Stop", Color.red, () =>
         {
             MusicPlayer.Instance.Stop();
-            _pauseElement.SetName("Pause");
-            _pauseElement.SetColor(Color.yellow);
+            _pauseElement.ElementName = "Pause";
+            _pauseElement.ElementColor = Color.yellow;
             MusicPlayer.Instance.Unpause();
         });
         
-        _pauseElement = subCat.CreateFunctionElement("Pause", Color.yellow, () =>
+        _pauseElement = subCat.CreateFunction("Pause", Color.yellow, () =>
         {
             var paused = MusicPlayer.Instance.PauseUnpause();
-            _pauseElement.SetName(paused ? "Unpause" : "Pause");
-            _pauseElement.SetColor(paused ? Color.green : Color.yellow);
+            _pauseElement.ElementName = paused ? "Unpause" : "Pause";
+            _pauseElement.ElementColor = paused ? Color.green : Color.yellow;
         });
         
-        subCat.CreateFunctionElement("Skip", Color.white, () =>
+        subCat.CreateFunction("Skip", Color.white, () =>
         {
             MusicPlayer.Instance.Skip();
         });
         
-        subCat.CreateFunctionElement("Shuffle", Color.white, () =>
+        subCat.CreateFunction("Shuffle", Color.white, () =>
         {
             MusicPlayer.Instance.Shuffle();
         });
@@ -54,7 +53,7 @@ internal static class BoneMenu
         settingsPanel.CreateBoolPreference("Send Notifications", Color.white, Preferences.SendNotifications, Preferences.OwnCategory);
         settingsPanel.CreateBoolPreference("Use TagLib", Color.white, Preferences.UseTagLib, Preferences.OwnCategory);
         settingsPanel.CreateFloatPreference("Notification Duration", Color.white, 0.5f, 0.5f, 10f, Preferences.NotificationDuration, Preferences.OwnCategory);
-        settingsPanel.CreateFunctionElement("Refresh Music", Color.white, () =>
+        settingsPanel.CreateFunction("Refresh Music", Color.white, () =>
         {
             MusicLoader.RemoveMissingFiles();
             MusicLoader.LoadNewFiles();

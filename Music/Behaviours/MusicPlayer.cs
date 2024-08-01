@@ -57,9 +57,9 @@ internal class MusicPlayer : MonoBehaviour
     {
         if (Preferences.UseTagLib.Value)
         {
-            bool isTitleCached = musicFile.CachedTitle != null;
-            bool isArtistCached = musicFile.CachedTitle != null;
-            bool isAlbumArtCached = musicFile.CachedArt != null;
+            var isTitleCached = musicFile.CachedTitle != null;
+            var isArtistCached = musicFile.CachedTitle != null;
+            bool isAlbumArtCached = musicFile.CachedArt;
             
             if (!isTitleCached)
             {
@@ -76,7 +76,7 @@ internal class MusicPlayer : MonoBehaviour
             if (!isAlbumArtCached)
             {
                 Texture2D albumArt = TagLibWrapper.GetCover(musicFile.Path);
-                if (albumArt == null) return;
+                if (!albumArt) return;
                 Texture2D resizedAlbumArt = albumArt.ProperResize(336, 336);
                 musicFile.CachedArt = resizedAlbumArt;
                 Destroy(albumArt);
@@ -123,7 +123,7 @@ internal class MusicPlayer : MonoBehaviour
 
     public void FixMixer()
     {
-        _audioSource.outputAudioMixerGroup = Audio.MusicMixer;
+        _audioSource.outputAudioMixerGroup = Audio.NonDiegeticMusic;
     }
 
     public bool PauseUnpause()
