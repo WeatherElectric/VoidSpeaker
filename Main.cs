@@ -6,7 +6,7 @@ public class Main : MelonMod
 {
     internal const string Name = "VoidSpeaker";
     internal const string Description = "A music player for BONELAB";
-    internal const string Author = "SoulWithMae";
+    internal const string Author = "FragileDeviations";
     internal const string Company = "Weather Electric";
     internal const string Version = "2.0.0";
     internal const string DownloadLink = "https://thunderstore.io/c/bonelab/p/SoulWithMae/VoidSpeaker/";
