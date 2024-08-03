@@ -8,7 +8,7 @@ public class Main : MelonMod
     internal const string Description = "A music player for BONELAB";
     internal const string Author = "FragileDeviations";
     internal const string Company = "Weather Electric";
-    internal const string Version = "2.0.0";
+    internal const string Version = "2.1.0";
     internal const string DownloadLink = "https://thunderstore.io/c/bonelab/p/SoulWithMae/VoidSpeaker/";
 
     private static bool _hasRanSetup;
@@ -18,7 +18,7 @@ public class Main : MelonMod
     {
         ModConsole.Setup(LoggerInstance);
         Preferences.Setup();
-        BoneMenu.Setup();
+        BoneMenu.BoneMenu.Setup();
         UserData.Setup();
         MusicLoader.Load();
         

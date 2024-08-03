@@ -1,5 +1,4 @@
-﻿using System.IO;
-using MelonLoader.Utils;
+﻿using MelonLoader.Utils;
 
 namespace WeatherElectric.VoidSpeaker.Melon;
 

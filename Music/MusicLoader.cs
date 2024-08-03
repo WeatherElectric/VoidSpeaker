@@ -1,8 +1,4 @@
-﻿using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-
-namespace WeatherElectric.VoidSpeaker.Music;
+﻿namespace WeatherElectric.VoidSpeaker.Music;
 
 internal static class MusicLoader
 {
@@ -40,7 +36,7 @@ internal static class MusicLoader
 #endif
         var filePaths = Directory.GetFiles(UserData.ModPath);
         List<MusicFile> musicFiles = new();
-        foreach (MusicFile file in MusicList.Music)
+        foreach (var file in MusicList.Music)
         {
             foreach (var path in filePaths)
             {

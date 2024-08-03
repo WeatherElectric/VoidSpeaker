@@ -1,16 +1,15 @@
 ﻿using BoneLib.BoneMenu;
 
-namespace WeatherElectric.VoidSpeaker.Menu;
+namespace WeatherElectric.VoidSpeaker.BoneMenu;
 
 internal static class BoneMenu
 {
     private static FunctionElement _pauseElement;
     public static void Setup()
     {
-        Page mainCat = Page.Root.CreatePage("<color=#6FBDFF>Weather Electric</color>", Color.cyan);
-        Page subCat = mainCat.CreatePage("<color=#bdd9da>Void Speaker</color>", Color.cyan);
-        Page settingsPanel = subCat.CreatePage("Settings", Color.gray);
-
+        var mainCat = Page.Root.CreatePage("<color=#6FBDFF>Weather Electric</color>", Color.white);
+        var subCat = mainCat.CreatePage("<color=#bdd9da>Void Speaker</color>", Color.white);
+        
         subCat.CreateFloat("Volume", Color.white, Preferences.Volume.Value, 0.05f, 0f, 1f, f =>
         {
             MusicPlayer.Instance.SetVolume(f);
@@ -48,6 +47,8 @@ internal static class BoneMenu
             MusicPlayer.Instance.Shuffle();
         });
         
+        var settingsPanel = subCat.CreatePage("Settings", Color.gray);
+        
         #region Settings
         
         settingsPanel.CreateBoolPreference("Send Notifications", Color.white, Preferences.SendNotifications, Preferences.OwnCategory);
@@ -55,9 +56,16 @@ internal static class BoneMenu
         settingsPanel.CreateFloatPreference("Notification Duration", Color.white, 0.5f, 0.5f, 10f, Preferences.NotificationDuration, Preferences.OwnCategory);
         settingsPanel.CreateFunction("Refresh Music", Color.white, () =>
         {
+            Menu.DisplayDialog("Warning!", "This will freeze the game for a while, depending on how many songs you added!", null, RefreshMusic);
+        });
+        
+        return;
+
+        void RefreshMusic()
+        {
             MusicLoader.RemoveMissingFiles();
             MusicLoader.LoadNewFiles();
-        });
+        }
 
         #endregion
     }

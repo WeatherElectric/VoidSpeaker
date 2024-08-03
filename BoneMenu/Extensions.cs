@@ -1,8 +1,8 @@
 ﻿using BoneLib.BoneMenu;
 
-namespace WeatherElectric.VoidSpeaker.Menu;
+namespace WeatherElectric.VoidSpeaker.BoneMenu;
 
-internal static class BoneMenuExtensions
+internal static class Extensions
 {
     #region Bool
 
