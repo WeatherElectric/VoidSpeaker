@@ -1,6 +1,4 @@
-﻿using System.IO;
-
-namespace WeatherElectric.VoidSpeaker.Music.Helpers;
+﻿namespace WeatherElectric.VoidSpeaker.Music.Helpers;
 
 internal static class TagLibWrapper
 {
@@ -37,12 +35,9 @@ internal static class TagLibWrapper
             Tag.Conductor => tagLibFile.Tag.Conductor,
             _ => null
         };
-        if (_tag == null)
-        {
-            ModConsole.Error($"{filepath}'s {tag.ToString()} field is null!");
-            return null;
-        }
-        return _tag;
+        if (_tag != null) return _tag;
+        ModConsole.Error($"{filepath}'s {tag.ToString()} field is null!");
+        return null;
     }
     
     public static Texture2D GetCover(string filepath)
@@ -57,12 +52,7 @@ internal static class TagLibWrapper
         var texture = new Texture2D(2, 2);
         // ReSharper disable once InvokeAsExtensionMethod, unhollowed unity extensions don't work well, have to call them directly
         ImageConversion.LoadImage(texture, picture.Data.Data, false);
+        // im supposed to call texture.Apply();, right? well guess what! ITS FUCKED UP IN IL2CPP! FUCK YOU IL2CPP!
         return texture;
-    }
-    
-    public static string GetFilename(string filepath)
-    {
-        var title = Path.GetFileName(filepath);
-        return title;
     }
 }

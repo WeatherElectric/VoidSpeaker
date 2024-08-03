@@ -1,14 +1,12 @@
-﻿using System.Collections.Generic;
-
-namespace WeatherElectric.VoidSpeaker.Music;
+﻿namespace WeatherElectric.VoidSpeaker.Music;
 
 internal static class MusicList
 {
-    public static readonly List<MusicFile> Music = new();
+    public static readonly List<MusicFile> Music = [];
     
     public static void CacheValues()
     {
-        foreach (MusicFile file in Music)
+        foreach (var file in Music)
         {
             file.CacheValues();
         }

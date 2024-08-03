@@ -1,11 +1,11 @@
-﻿using System.IO;
+﻿using MelonLoader.Utils;
 
 namespace WeatherElectric.VoidSpeaker.Melon;
 
 internal static class UserData
 {
-    private static readonly string WeatherElectricPath = Path.Combine(MelonUtils.UserDataDirectory, "Weather Electric");
-    public static readonly string ModPath = Path.Combine(MelonUtils.UserDataDirectory, "Weather Electric/Void Speaker");
+    private static readonly string WeatherElectricPath = Path.Combine(MelonEnvironment.UserDataDirectory, "Weather Electric");
+    public static readonly string ModPath = Path.Combine(MelonEnvironment.UserDataDirectory, "Weather Electric/Void Speaker");
 
     public static void Setup()
     {

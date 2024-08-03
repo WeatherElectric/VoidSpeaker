@@ -57,9 +57,9 @@ internal class MusicPlayer : MonoBehaviour
     {
         if (Preferences.UseTagLib.Value)
         {
-            bool isTitleCached = musicFile.CachedTitle != null;
-            bool isArtistCached = musicFile.CachedTitle != null;
-            bool isAlbumArtCached = musicFile.CachedArt != null;
+            var isTitleCached = musicFile.CachedTitle != null;
+            var isArtistCached = musicFile.CachedTitle != null;
+            bool isAlbumArtCached = musicFile.CachedArt;
             
             if (!isTitleCached)
             {
@@ -75,16 +75,16 @@ internal class MusicPlayer : MonoBehaviour
             }
             if (!isAlbumArtCached)
             {
-                Texture2D albumArt = TagLibWrapper.GetCover(musicFile.Path);
-                if (albumArt == null) return;
-                Texture2D resizedAlbumArt = albumArt.ProperResize(336, 336);
+                var albumArt = TagLibWrapper.GetCover(musicFile.Path);
+                if (!albumArt) return;
+                var resizedAlbumArt = albumArt.ProperResize(336, 336);
                 musicFile.CachedArt = resizedAlbumArt;
                 Destroy(albumArt);
             }
 
-            if (musicFile.CachedTitle == null || musicFile.CachedArtist == null || musicFile.CachedArt == null)
+            if (musicFile.CachedTitle == null || musicFile.CachedArtist == null || !musicFile.CachedArt)
             {
-                Notification notification = new Notification
+                var notification = new Notification
                 {
                     Title = "Now Playing:",
                     Message = $"{musicFile.Name}",
@@ -96,7 +96,7 @@ internal class MusicPlayer : MonoBehaviour
                 return;
             }
             
-            Notification notif = new Notification
+            var notif = new Notification
             {
                 Title = "Now Playing:",
                 Message = $"{musicFile.CachedTitle} by {musicFile.CachedArtist}",
@@ -109,7 +109,7 @@ internal class MusicPlayer : MonoBehaviour
         }
         else
         {
-            Notification notif = new Notification
+            var notif = new Notification
             {
                 Title = "Now Playing:",
                 Message = $"{musicFile.Name}",
@@ -119,11 +119,6 @@ internal class MusicPlayer : MonoBehaviour
             };
             notif.Send();
         }
-    }
-
-    public void FixMixer()
-    {
-        _audioSource.outputAudioMixerGroup = Audio.MusicMixer;
     }
 
     public bool PauseUnpause()
@@ -189,10 +184,13 @@ internal class MusicPlayer : MonoBehaviour
         if (resetIndex) _currentMusicIndex = 0;
     }
 
+#pragma warning disable CA1822
     private void OnDestroy()
     {
         Instance = null;
     }
+#pragma warning restore CA1822
     
+    // ReSharper disable once ConvertToPrimaryConstructor
     public MusicPlayer(IntPtr ptr) : base(ptr) { }
 }
