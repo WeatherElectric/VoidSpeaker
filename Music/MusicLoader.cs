@@ -35,7 +35,7 @@ internal static class MusicLoader
         ModConsole.Warning("Checking for new files.");
 #endif
         var filePaths = Directory.GetFiles(UserData.ModPath);
-        List<MusicFile> musicFiles = new();
+        List<MusicFile> musicFiles = [];
         foreach (var file in MusicList.Music)
         {
             foreach (var path in filePaths)
@@ -64,15 +64,17 @@ internal static class MusicLoader
 #if DEBUG
         ModConsole.Warning("Checking for missing files.");
 #endif
-        List<MusicFile> filesToDelete = new();
-        foreach (var file in MusicList.Music.Where(file => !File.Exists(file.Path)))
+        List<MusicFile> filesToDelete = [];
+        foreach (var file in MusicList.Music)
         {
+            if (File.Exists(file.Path)) continue;
 #if DEBUG
             ModConsole.Warning($"File {file.Path} no longer exists, removing from music list.");
 #endif
             filesToDelete.Add(file);
             file.Dispose();
         }
+
         if (filesToDelete.Count == 0) return;
         foreach (var file in filesToDelete)
         {
