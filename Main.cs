@@ -1,4 +1,5 @@
 ﻿using System.Reflection;
+using FieldInjector;
 
 namespace WeatherElectric.VoidSpeaker;
 
@@ -8,7 +9,7 @@ public class Main : MelonMod
     internal const string Description = "A music player for BONELAB";
     internal const string Author = "FragileDeviations";
     internal const string Company = "Weather Electric";
-    internal const string Version = "2.1.1";
+    internal const string Version = "2.2.0";
     internal const string DownloadLink = "https://thunderstore.io/c/bonelab/p/SoulWithMae/VoidSpeaker/";
 
     private static bool _hasRanSetup;
@@ -21,6 +22,8 @@ public class Main : MelonMod
         BoneMenu.BoneMenu.Setup();
         UserData.Setup();
         MusicLoader.Load();
+        
+        SerialisationHandler.Inject<MetadataListener>();
         
         Hooking.OnLevelLoaded += OnLevelLoad;
         

@@ -39,6 +39,9 @@
         <Reference Include="BoneLib">
             <HintPath>Links\Mods\BoneLib.dll</HintPath>
         </Reference>
+        <Reference Include="FieldInjector">
+            <HintPath>Links\Mods\FieldInjector.dll</HintPath>
+        </Reference>
         <Reference Include="TagLibSharp">
           <HintPath>Links\Game\UserLibs\TagLibSharp.dll</HintPath>
         </Reference>
@@ -47,6 +50,7 @@
     <ItemGroup>
       <Compile Remove="Staging\**" />
       <Compile Remove="Links\**" />
+      <Compile Remove="Assets\**" />
     </ItemGroup>
     
     <ItemGroup>
@@ -54,6 +58,8 @@
       <EmbeddedResource Remove="Links\**" />
       <None Remove="Resources\Default.mp3" />
       <EmbeddedResource Include="Resources\Default.mp3" />
+      <EmbeddedResource Remove="Assets\**" />
+      <None Remove="Assets\**" />
     </ItemGroup>
     
     <ItemGroup>
@@ -65,8 +71,7 @@
     </ItemGroup>
     
     <ItemGroup>
-      <PackageReference Include="Bonelab.GameLibs.Steam" Version="5.0.0" />
-      <PackageReference Include="Il2CppInterop.Runtime" Version="1.4.5" />
+      <PackageReference Include="Bonelab.GameLibs.Steam" Version="6.0.0" />
     </ItemGroup>
     
     <Target Name="PostBuild" AfterTargets="PostBuildEvent">

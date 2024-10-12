@@ -49,8 +49,53 @@ internal class MusicPlayer : MonoBehaviour
         var musicFile = MusicList.Music[_currentMusicIndex];
         _audioSource.clip = musicFile.AudioClip;
         _audioSource.Play();
-
         if (Preferences.SendNotifications.Value) SendNotification(musicFile);
+        UpdateListeners(musicFile);
+    }
+
+    private static void UpdateListeners(MusicFile musicFile)
+    {
+        if (MetadataListener.Listeners.Count == 0) return;
+        if (Preferences.UseTagLib.Value)
+        {
+            foreach (var listener in MetadataListener.Listeners)
+            {
+                try
+                {
+                    listener.InvokeTitleChanged(musicFile.CachedTitle);
+                }
+                catch (Exception e)
+                {
+                    ModConsole.Error($"Failed to invoke title event for MetadataListener on GameObject {listener.gameObject.name}! Exception: {e}");
+                }
+
+                try
+                {
+                    listener.InvokeArtistChanged(musicFile.CachedArtist);
+                }
+                catch (Exception e)
+                {
+                    ModConsole.Error(
+                        $"Failed to invoke title event for MetadataListener on GameObject {listener.gameObject.name}! Exception: {e}");
+                }
+
+                try
+                {
+                    listener.InvokeArtChanged(musicFile.CachedArt);
+                }
+                catch (Exception e)
+                {
+                    ModConsole.Error($"Failed to invoke art event for MetadataListener on GameObject {listener.gameObject.name}! Exception: {e}");
+                }
+            }
+        }
+        else
+        {
+            foreach (var listener in MetadataListener.Listeners)
+            {
+                listener.InvokeFilenameChanged(musicFile.Name);
+            }
+        }
     }
 
     private static void SendNotification(MusicFile musicFile)

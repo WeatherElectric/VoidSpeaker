@@ -11,6 +11,7 @@ Less bugs, better UI.
 * Can be shuffled in runtime
 * Can be paused
 * MP3 files do not need to be edited anymore, it resizes their images itself now, way easier to use
+* SDK script that allows you to get the current song's metadata
 
 # IMPORTANT!
 * DEPENDING ON HOW MANY MP3 FILES YOU PUT IN THE FOLDER, THE GAME MAY TAKE LONGER TO START UP!
@@ -20,11 +21,16 @@ Less bugs, better UI.
 # Setup
 ## Mod
 ### Installation
-* Place TagLibSharp.dll in the UserLibs folder
-* Place VoidSpeaker.dll in the Mods folder and run the game once
+* Place `TagLibSharp.dll` in the UserLibs folder
+* Place `VoidSpeaker.dll` in the Mods folder and run the game once
 ### Preferences
-* In WeatherElectric.cfg, all preferences for the mod are in the VoidSpeaker category
+* In `WeatherElectric.cfg`, all preferences for the mod are in the VoidSpeaker category
 * You can also edit them in game through BoneMenu.
 ## Custom Audio
 ### Installation
-* Place your MP3 files into UserData/Weather Electric/Void Speaker
+* Place your MP3 files into `UserData/Weather Electric/Void Speaker`
+## Unity Integration
+* Import `VoidSpeaker.unitypackage` into your project
+* Add `MetadataListener` to an object
+* Example Setup:
+![Example Setup](https://raw.githubusercontent.com/WeatherElectric/VoidSpeaker/main/Assets/ListenerSetup.png)
