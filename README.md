@@ -33,4 +33,4 @@ Less bugs, better UI.
 * Import `VoidSpeaker.unitypackage` into your project
 * Add `MetadataListener` to an object
 * Example Setup:
-![Example Setup](https://raw.githubusercontent.com/WeatherElectric/VoidSpeaker/main/Assets/ListenerSetup.png)
+* ![Example Setup](https://raw.githubusercontent.com/WeatherElectric/VoidSpeaker/refs/heads/master/Assets/ListenerSetup.png)
